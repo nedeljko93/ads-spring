@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th = "http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=UTF-8"/>
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+<div id = "nav-placeholder">
+    <nav class = "navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+            <ul class = "navbar-nav mr-auto">
+                <li class = "nav-item active">
+                    <a class = "nav-link" href = "/home">Home <span class = "sr-only">(current)</span></a>
+                </li>
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/addJob">Post job</a>
+                </li>
+
+            </ul>
+            <form class = "form-inline my-2 my-lg-0">
+                <input class = "form-control mr-sm-2" type = "search" placeholder = "Search" aria-label = "Search">
+                <button class = "btn btn-outline-success my-2 my-sm-0" type = "submit">Search</button>
+            </form>
+        </div>
+    </nav>
+</div>
+
+
+<div class = "container">
+
+
+    <table class = "table">
+        <tr>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Technologies requred</th>
+            <th>Company</th>
+            <th>Requred level</th>
+
+        </tr>
+        <tr th:each = "job : ${jobs}">
+            <td th:text = "${job.job_title}"></td>
+            <td th:text = "${job.location}"></td>
+            <td th:text = "${job.technologies_requred}"></td>
+            <td th:text = "${job.company_name}"></td>
+            <td th:text = "${job.requred_level}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>

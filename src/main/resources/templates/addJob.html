@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+<head>
+
+    <title th:text = "${title}">Wellcome</title>
+    <meta charset = "UTF-8">
+    <title>Title</title>
+    <link rel = "stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel = "stylesheet" href = "./style.css">
+</head>
+<body>
+<div id = "nav-placeholder">
+    <nav class = "navbar navbar-expand-lg navbar-light bg-light">
+
+
+        <div class = "collapse navbar-collapse" id = "navbarSupportedContent">
+            <ul class = "navbar-nav mr-auto">
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/home">Home </a>
+                </li>
+                <li class = "nav-item">
+                    <a class = "nav-link" href = "/addJob">Post job</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+<div>
+    <h1>Post Job</h1>
+    <form action = "submit" th:action = "@{/addJob}" th:object = "${job}" method = "post">
+
+        <div class = "form-group">
+            <label for = "titleInput">Title</label>
+            <input class = "form-control" id = "titleInput" placeholder = "Title"
+                    th:field = "*{job_title}">
+        </div>
+        <div class = "form-group">
+            <label for = "descriptionInput">Description</label>
+            <textarea class = "form-control" id = "descriptionInput" rows = "3" th:field = "*{job_description}"
+                    placeholder = "Description"></textarea>
+        </div>
+        <div class = "form-group">
+            <label for = "descriptionInput">Requred skill</label>
+            <textarea class = "form-control" id = "requredSkillsInput" rows = "3" th:field = "*{requred_skills}"
+                    placeholder = "Requred skill"></textarea>
+        </div>
+        <div class = "form-group">
+            <label for = "bonusSkillsInput">Bonus skills</label>
+            <textarea class = "form-control" id = "bonusSkillsInput" rows = "3" th:field = "*{bonus_skills}"
+                    placeholder = "Bonus skills"></textarea>
+        </div>
+        <div class = "form-group">
+            <label for = "jobOfferInput">Job offer</label>
+            <textarea class = "form-control" id = "jobOfferInput" rows = "3" th:field = "*{job_offer}"
+                    placeholder = "Job offer"></textarea>
+        </div>
+
+        <div class = "form-group">
+            <label for = "locationInput">Location</label>
+            <input class = "form-control" id = "locationInput" placeholder = "Location"
+                    th:field = "*{location}">
+        </div>
+
+
+        <div class = "form-group">
+            <label for = "companyNameInput">Company</label>
+            <input class = "form-control" id = "companyNameInput" placeholder = "Company"
+                    th:field = "*{company_name}">
+        </div>
+
+        <div class = "form-group">
+            <label for = "technologiesRequredInput">Technologies requred</label>
+            <input class = "form-control" id = "technologiesRequredInput"
+                    placeholder = "Technologies requred"
+                    th:field = "*{technologies_requred}">
+        </div>
+        <div class = "form-group">
+            <label for = "requredLevelSelect">Requred level</label>
+            <select class = "form-control" id = "requredLevelSelect">
+                <option>Junior</option>
+                <option>Medior</option>
+                <option>Senior</option>
+            </select>
+        </div>
+        <div class = "form-check" align = "center">
+
+            <input class = "form-check-input" type = "checkbox" id = "defaultCheck1" th:checked="${flag} ? 'checked'">
+            <label class = "form-check-label" for = "defaultCheck1">
+                Promoted
+            </label>
+        </div>
+
+        <div align = "center">
+            <button type = "submit" class = "btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+</div>
+</body>
+</html>
