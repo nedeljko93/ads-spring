@@ -1,9 +1,9 @@
 package com.nedeljko.demo.service;
 
-import com.nedeljko.demo.dao.UserDao;
-import com.nedeljko.demo.model.RequestLogin;
-import com.nedeljko.demo.model.ResponseMessage;
-import com.nedeljko.demo.model.User;
+import com.nedeljko.demo.dao.IUserDao;
+import com.nedeljko.demo.model.request.LoginRequest;
+import com.nedeljko.demo.model.response.MessageResponse;
+import com.nedeljko.demo.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ import java.util.UUID;
 
 @Service
 public class UserService {
-    private final UserDao userDao;
+    private final IUserDao userDao;
 
     @Autowired
-    public UserService(@Qualifier("UserDao") UserDao userDao) {
+    public UserService(@Qualifier("UserDao") IUserDao userDao) {
         this.userDao = userDao;
     }
 
@@ -41,11 +41,11 @@ public class UserService {
         return userDao.updateUserById(id, newUser);
     }
 
-    public User login(RequestLogin user) {
+    public User login(LoginRequest user) {
         return userDao.login(user);
     }
 
-    public ResponseMessage logOut(User user) {
+    public MessageResponse logOut(User user) {
         return userDao.logout(user);
     }
 }

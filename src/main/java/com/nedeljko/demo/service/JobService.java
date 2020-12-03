@@ -1,10 +1,11 @@
 package com.nedeljko.demo.service;
 
-import com.nedeljko.demo.dao.JobDao;
-import com.nedeljko.demo.model.Job;
-import com.nedeljko.demo.model.ResponseMessage;
+import com.nedeljko.demo.dao.IJobDao;
+import com.nedeljko.demo.entity.Job;
+import com.nedeljko.demo.model.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,14 +13,21 @@ import java.util.UUID;
 
 @Service
 public class JobService {
-    private final JobDao jobDao;
+
+    @Value("${legenda}")
+    private String myProperty;
+
+    private final IJobDao jobDao;
 
     @Autowired
-    public JobService(@Qualifier("JobDao") JobDao jobDao) {
+    public JobService(@Qualifier("JobDao") IJobDao jobDao) {
         this.jobDao = jobDao;
     }
 
-    public ResponseMessage addJob(Job job) {
+    public MessageResponse addJob(Job job) {
+
+        System.out.println(myProperty);
+
         return jobDao.addJob(job);
     }
 
@@ -27,11 +35,11 @@ public class JobService {
         return jobDao.getListOfJobs();
     }
 
-    public ResponseMessage deleteJob(UUID id) {
+    public MessageResponse deleteJob(UUID id) {
         return jobDao.deleteJob(id);
     }
 
-    public ResponseMessage updateJob(UUID id, Job job) {
+    public MessageResponse updateJob(UUID id, Job job) {
         return jobDao.updateJob(id, job);
     }
 }
